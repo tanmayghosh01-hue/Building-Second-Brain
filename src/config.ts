@@ -1,0 +1,1 @@
+export const JWT_PASSWORD = "badshah-ki-jali-anus-chalo-change-kare-syllabus";
