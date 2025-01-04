@@ -24,13 +24,20 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
     // const email = req.body.email;
     const password = req.body.password;
     const username = req.body.username;
-    yield db_1.UserModel.create({
-        username: username,
-        password: password,
-    });
-    res.json({
-        message: "User signed up",
-    });
+    try {
+        yield db_1.UserModel.create({
+            username: username,
+            password: password,
+        });
+        res.json({
+            message: "User signed up",
+        });
+    }
+    catch (e) {
+        res.status(411).json({
+            message: "User already existss",
+        });
+    }
 }));
 app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const password = req.body.password;
@@ -47,6 +54,11 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
             token,
         });
     }
+    else {
+        res.status(403).json({
+            message: "Incorrect credentials",
+        });
+    }
 }));
 app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const link = req.body.link;
@@ -56,10 +68,10 @@ app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter
         type,
         //@ts-ignore
         userId: req.userId,
-        tags: []
+        tags: [],
     });
     res.json({
-        message: "Content added"
+        message: "Content added",
     });
 }));
 app.get("/api/v1/content", (req, res) => { });

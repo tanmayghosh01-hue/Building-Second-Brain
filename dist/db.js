@@ -38,13 +38,13 @@ const mongoose_1 = __importStar(require("mongoose"));
 mongoose_1.default.connect("mongodb+srv://chiefhikebulzara:chiefisbulzara@cluster0.rd1qa.mongodb.net/second-brain");
 const UserSchema = new mongoose_1.Schema({
     username: { type: String, unique: true },
-    password: String
+    password: String,
 });
 exports.UserModel = (0, mongoose_1.model)("User", UserSchema);
 const ContentSchema = new mongoose_1.Schema({
     title: String,
     link: String,
-    tags: [{ type: mongoose_1.default.Types.ObjectId, ref: "User", required: true }],
-    userId: { type: mongoose_1.default.Types.ObjectId, ref: "User", required: true }
+    tags: [{ type: mongoose_1.default.Types.ObjectId, ref: "Tag" }],
+    userId: { type: mongoose_1.default.Types.ObjectId, ref: "User", required: true },
 });
 exports.ContentModel = (0, mongoose_1.model)("Content", ContentSchema);
