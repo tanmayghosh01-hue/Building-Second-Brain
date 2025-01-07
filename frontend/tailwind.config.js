@@ -7,6 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
+
+        gray: {
+          100: "#eeeeef",
+          200: "#e6e9ed",
+          600: "#95989c"
+        },
+
         purple: {
           300: "#dee2fa",
           500: "#3c3e7c",

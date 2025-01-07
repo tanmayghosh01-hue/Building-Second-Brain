@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactElement } from "react";
+
 interface ButtonProps {
   variant: "primary" | "secondary";
   size: "sm" | "md" | "lg";
   text: string;
-  startIcon?: any;
-  endIcon?: any;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
   onClick: () => void;
 }
 
@@ -13,12 +14,12 @@ const variantStyles = {
   secondary: "bg-purple-300 text-purple-600",
 };
 
-const defaultStyles = "rounded-md p-4 flex";
+const defaultStyles = "rounded p-4 flex";
 
 const sizeStyles = {
-  sm: "py-1 px-2",
-  md: "py-2 px-4",
-  lg: "py-4 px-6",
+  sm: "py-1 px-2 text-sm",
+  md: "py-2 px-4 text-md",
+  lg: "py-4 px-6 text-xl",
 };
 
 export const Button = (props: ButtonProps) => {
@@ -26,10 +27,11 @@ export const Button = (props: ButtonProps) => {
     <button
       className={`${variantStyles[props.variant]} ${defaultStyles} ${
         sizeStyles[props.size]
-      }`}
+      } items-center`}
     >
       
-      {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null}{props.text}{props.endIcon}
+      {props.startIcon ? <div className="pr-1">{props.startIcon}</div> : null}
+      <div className="pr-2">{props.text}</div>{props.endIcon}
     </button>
   );
 };
