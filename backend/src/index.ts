@@ -4,11 +4,14 @@ import { ContentModel, LinkModel, UserModel } from "./db";
 import { JWT_PASSWORD } from "./config";
 import { userMiddleware } from "./middleware";
 import { random } from "./util";
+import cors from "cors";
 
 // const JWT_PASSWORD = "badshah-ki-jali-anus-chalo-change-kare-syllabus";
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.post("/api/v1/signup", async (req, res) => {
   // const email = req.body.email;
@@ -20,6 +23,8 @@ app.post("/api/v1/signup", async (req, res) => {
       username: username,
       password: password,
     });
+
+    console.log(username, password);
 
     res.json({
       message: "User signed up",

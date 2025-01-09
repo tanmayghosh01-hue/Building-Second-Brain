@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary";
-  size: "sm" | "md" | "lg";
+  size: "sm" | "md" | "lg" | "full";
   text: string;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
@@ -14,12 +14,13 @@ const variantStyles = {
   secondary: "bg-purple-300 text-purple-600",
 };
 
-const defaultStyles = "rounded p-4 flex";
+const defaultStyles = "rounded flex";
 
 const sizeStyles = {
   sm: "py-1 px-2 text-sm",
-  md: "py-2 px-4 text-md",
+  md: "py-1 px-4 text-md",
   lg: "py-4 px-6 text-xl",
+  full: "w-[200px] h-[35px] justify-center"
 };
 
 export const Button = (props: ButtonProps) => {
@@ -27,11 +28,11 @@ export const Button = (props: ButtonProps) => {
     <button
       className={`${variantStyles[props.variant]} ${defaultStyles} ${
         sizeStyles[props.size]
-      } items-center`}
+      } items-center`} onClick={props.onClick}
     >
       
-      {props.startIcon ? <div className="pr-1">{props.startIcon}</div> : null}
-      <div className="pr-2">{props.text}</div>{props.endIcon}
+      {props.startIcon ? <div className="pr-2 pt-[2px]">{props.startIcon}</div> : null}
+      <div className="p-1">{props.text}</div>{props.endIcon}
     </button>
   );
 };

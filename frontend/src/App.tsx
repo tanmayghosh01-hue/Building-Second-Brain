@@ -1,29 +1,18 @@
-import "./App.css";
-import { Button } from "./components/Button";
-import { PlusIcon } from "./icons/PlusIcon";
+import { Signin } from "./pages/Signin";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Signup } from "./pages/Signup";
+import { Dashboard } from "./pages/DashBoard";
 
 function App() {
   return (
     <>
-      <Button
-        startIcon={<PlusIcon size="md" />}
-        variant="primary"
-        size="sm"
-        onClick={() => {}}
-        text={"share"}
-      />
-      <Button
-        variant="secondary"
-        size="md"
-        onClick={() => {}}
-        text={"Add Content"}
-      />
-      <Button
-        variant="secondary"
-        size="lg"
-        onClick={() => {}}
-        text={"Contect"}
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

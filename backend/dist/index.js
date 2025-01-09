@@ -18,9 +18,11 @@ const db_1 = require("./db");
 const config_1 = require("./config");
 const middleware_1 = require("./middleware");
 const util_1 = require("./util");
+const cors_1 = __importDefault(require("cors"));
 // const JWT_PASSWORD = "badshah-ki-jali-anus-chalo-change-kare-syllabus";
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // const email = req.body.email;
     const password = req.body.password;
@@ -30,6 +32,7 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
             username: username,
             password: password,
         });
+        console.log(username, password);
         res.json({
             message: "User signed up",
         });
