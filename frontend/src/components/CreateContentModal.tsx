@@ -31,6 +31,8 @@ export function CreateContentModal({ open, onClose }) {
       }
     })
 
+    console.log(link, title, type);
+
   }
 
   return (
@@ -46,11 +48,11 @@ export function CreateContentModal({ open, onClose }) {
               </div>
 
               <div className="mt-1">
-                <Input placeholder={"Title"} />
+                <Input reference={titleRef} placeholder={"Title"} />
               </div>
 
               <div className="mt-1 mb-1">
-                <Input placeholder={"Link"} />
+                <Input reference={linkRef} placeholder={"Link"} />
               </div>
 
               <div className="flex mb-2 mt-2 gap-1 justify-center">

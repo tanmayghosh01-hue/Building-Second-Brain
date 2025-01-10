@@ -5,9 +5,12 @@ import { CreateContentModal } from "../components/CreateContentModal";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Sidebar } from "../components/Sidebar";
+import { useContent } from "../hooks/useContent";
 
- export function Dashboard() {
+export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
+
+  const contents = useContent();
 
   return (
     <>
@@ -41,18 +44,19 @@ import { Sidebar } from "../components/Sidebar";
             />
           </div>
 
-          <div className="flex gap-4">
-            <Card
-              type="twitter"
-              link="https://x.com/meri_mrziii/status/1876574872220156048"
-              title="CID Specials"
-            />
-            <Card
+          {JSON.stringify(contents)}
+
+          <div className="flex gap-4 flex-wrap">
+            {contents.map(({ type, link, title }) => (
+              <Card type={type} link={link} title={title} />
+            ))}
+
+            {/* <Card
               type="youtube"
               // link="https://www.youtube.com/watch?v=LwAiGnBrbfA"
               link="https://youtu.be/FkjDTRY8TYM?si=Y7NeRicYO16wJqMw"
               title="Dreams of the far future"
-            />
+            /> */}
           </div>
         </div>
       </div>
