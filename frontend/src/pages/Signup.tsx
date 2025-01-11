@@ -42,6 +42,10 @@ export function Signup() {
             onClick={() => {signup()}}
           />
         </div>
+
+        <div className="text-center mt-3">
+          Already a user? <span onClick={() => navigate("/signin")} className="cursor-pointer underline text-purple-700">Sign in</span>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { CreateContentModal } from "../components/CreateContentModal";
@@ -10,16 +10,20 @@ import { useContent } from "../hooks/useContent";
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
 
-  const contents = useContent();
+  const {contents, refresh} = useContent();
+
+  useEffect(() => {
+    refresh()
+  },[modalOpen, refresh])
 
   return (
     <>
-      <div className="flex">
-        <div>
+      <div className="">
+        <div className="fixed">
           <Sidebar />
         </div>
 
-        <div className="flex-1 bg-neutral-100 pl-3">
+        <div className="bg-neutral-100 pl-3 pl-64">
           <CreateContentModal
             open={modalOpen}
             onClose={() => {
@@ -44,9 +48,9 @@ export function Dashboard() {
             />
           </div>
 
-          {JSON.stringify(contents)}
+          {/* {JSON.stringify(contents)} */}
 
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap mt-5 pb-5">
             {contents.map(({ type, link, title }) => (
               <Card type={type} link={link} title={title} />
             ))}

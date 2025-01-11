@@ -7,6 +7,7 @@ interface ButtonProps {
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   onClick: () => void;
+  disable?: boolean;
 }
 
 const variantStyles = {
@@ -29,6 +30,8 @@ export const Button = (props: ButtonProps) => {
       className={`${variantStyles[props.variant]} ${defaultStyles} ${
         sizeStyles[props.size]
       } items-center`} onClick={props.onClick}
+
+      disabled={props.disable}
     >
       
       {props.startIcon ? <div className="pr-2 pt-[2px]">{props.startIcon}</div> : null}

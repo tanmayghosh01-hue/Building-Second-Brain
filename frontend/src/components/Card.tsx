@@ -28,7 +28,10 @@ export function Card({ title, link, type }: CardProps) {
               </a>
             </div>
             <div className="pr-2 text-gray-500">
-              <DustBin size="md" />
+              <button>
+                <DustBin size="md" />
+              </button>
+              
             </div>
           </div>
         </div>

@@ -16,23 +16,42 @@ export function CreateContentModal({ open, onClose }) {
   const titleRef = useRef<HTMLInputElement>();
   const linkRef = useRef<HTMLInputElement>();
   const [type, setType] = useState(ContentType.Youtube);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function addContent() {
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
 
-    await axios.post(`${BACKEND_URL}/api/v1/content`, {
-      link,
-      title,
-      type
-    }, {
-      headers: {
-        "authorization": localStorage.getItem("token")
-      }
-    })
+    if (!title || !link) {
+      alert("Title and link cannot be empty");
+      return; // Prevent adding if fields are empty
+    }
 
-    console.log(link, title, type);
+    setIsLoading(true);
 
+    try {
+      await axios.post(
+        `${BACKEND_URL}/api/v1/content`,
+        {
+          link,
+          title,
+          type,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      console.log(link, title, type);
+
+      onClose();
+    } catch (error) {
+      alert(error);
+    } finally {
+      setIsLoading(false); // Hide loading state
+    }
   }
 
   return (
@@ -77,7 +96,6 @@ export function CreateContentModal({ open, onClose }) {
                   }}
                   size="md"
                 />
-                
               </div>
 
               <div className="flex justify-center">
@@ -87,7 +105,8 @@ export function CreateContentModal({ open, onClose }) {
                   onClick={() => {
                     addContent();
                   }}
-                  text={"Submit"}
+                  text={isLoading ? "Submitting..." : "Submit"}
+                  disable={isLoading} // Disable button when loading
                 />
               </div>
             </span>
