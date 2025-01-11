@@ -89,15 +89,17 @@ app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(
         content,
     });
 }));
-app.delete("/api/v1/content", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const contentId = req.body.contentId;
-    yield db_1.ContentModel.deleteMany({
-        contentId,
+    //@ts-ignore
+    console.log(contentId, req.userId);
+    yield db_1.ContentModel.deleteOne({
+        _id: contentId,
         // @ts-ignore
         userId: req.userId,
     });
     res.json({
-        message: "Deleted",
+        message: "Item Deleted",
     });
 }));
 app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {

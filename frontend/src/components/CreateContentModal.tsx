@@ -1,5 +1,4 @@
 // Controlled Component
-
 import { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";

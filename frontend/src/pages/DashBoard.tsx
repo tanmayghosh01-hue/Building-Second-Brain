@@ -23,7 +23,7 @@ export function Dashboard() {
           <Sidebar />
         </div>
 
-        <div className="bg-neutral-100 pl-3 pl-64">
+        <div className="bg-neutral-100 pl-64 h-screen">
           <CreateContentModal
             open={modalOpen}
             onClose={() => {
@@ -51,8 +51,8 @@ export function Dashboard() {
           {/* {JSON.stringify(contents)} */}
 
           <div className="flex gap-4 flex-wrap mt-5 pb-5">
-            {contents.map(({ type, link, title }) => (
-              <Card type={type} link={link} title={title} />
+            {contents.map(({ type, link, title, _id }) => (
+              <Card type={type} link={link} title={title} _id={_id} />
             ))}
 
             {/* <Card
