@@ -30,6 +30,11 @@ export function Signin() {
   return (
     <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
       <div className="bg-white rounded-xl border min-w-48 p-8">
+
+        <div className="text-3xl text-center mb-5">
+          <span className="text-teal-600 font-bold mr-1">SEC</span><span className="underline">Brain</span>
+        </div>
+
         <div className="mb-2">
           <Input placeholder="Username" reference={usernameRef} />
         </div>
@@ -46,6 +51,10 @@ export function Signin() {
               signin();
             }}
           />
+        </div>
+
+        <div className="text-center mt-3">
+          new user? <span onClick={() => navigate("/signup")} className="cursor-pointer underline text-purple-700">Sign up</span>
         </div>
       </div>
     </div>

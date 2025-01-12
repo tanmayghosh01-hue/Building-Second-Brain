@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary";
-  size: "sm" | "md" | "lg" | "full";
+  size: "sm" | "md" | "lg" | "full" | "hover";
   text: string;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
@@ -20,6 +20,7 @@ const defaultStyles = "rounded flex";
 const sizeStyles = {
   sm: "py-1 px-2 text-sm",
   md: "py-1 px-4 text-md",
+  hover: "py-1 px-4 text-md hover:bg-emerald-500 hover:text-white",
   lg: "py-4 px-6 text-xl",
   full: "w-[200px] h-[35px] justify-center"
 };
