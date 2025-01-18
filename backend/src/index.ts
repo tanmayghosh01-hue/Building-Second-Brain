@@ -96,7 +96,7 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
   const contentId = req.body.contentId;
 
   //@ts-ignore
-  console.log(contentId, req.userId)
+  console.log(contentId, req.userId);
 
   await ContentModel.deleteOne({
     _id: contentId,
@@ -135,7 +135,6 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
       message: "/share/" + hash,
     });
   } else {
-
     await LinkModel.deleteOne({
       //@ts-ignore
       userId: req.userId,
@@ -150,7 +149,7 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
 app.get("/api/v1/brain/:shareLink", async (req, res) => {
   const hash = req.params.shareLink;
   const link = await LinkModel.findOne({
-    hash
+    hash,
   });
 
   console.log(link?.userId);

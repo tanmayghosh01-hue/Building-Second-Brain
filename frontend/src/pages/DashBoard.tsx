@@ -9,7 +9,7 @@ import { useContent } from "../hooks/useContent";
 import { useNavigate } from "react-router-dom";
 import { CreateShareModal } from "../components/CreateShareModal";
 
-export function Dashboard() {
+export function Dashboard({name}) {
   const [modalOpen, setmodalOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const navigate = useNavigate();
@@ -54,7 +54,8 @@ export function Dashboard() {
           <div className="flex justify-end gap-4 pt-2 pr-2 items-center">
 
             <div className="border-2 rounded border-rose-700 p-1">
-              {contents[0]?.userId.username}
+              {/* {contents[0]?.userId.username} */}
+              {name}
             </div>
 
             <Button

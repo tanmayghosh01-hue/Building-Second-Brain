@@ -31,7 +31,7 @@ export function Card({ title, link, type, _id }: CardProps) {
                 <ShareIcon size="md" />
               </a>
             </div>
-            <div className="pr-2 text-gray-500">
+            <div className="pr-1 text-gray-500 pt-[6px]">
               <button
                 onClick={() => {
                   deleteContent(_id);

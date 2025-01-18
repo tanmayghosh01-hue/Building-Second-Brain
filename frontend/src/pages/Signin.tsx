@@ -5,7 +5,8 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
-export function Signin() {
+export function Signin( {setName} ) {
+  
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
   const navigate = useNavigate();
@@ -20,9 +21,16 @@ export function Signin() {
 
     const jwt = response.data.token;
 
-    localStorage.setItem("token", jwt);
+    // If Condition for sending Username to Dashboard State by App.tsx
 
-    // alert("You have signed in!");
+    if (jwt) {
+      console.log(username);
+      setName(username)
+    } else {
+      alert("the data won't go negge")
+    }
+
+    localStorage.setItem("token", jwt);
 
     navigate("/dashboard");
   }
@@ -30,9 +38,9 @@ export function Signin() {
   return (
     <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
       <div className="bg-white rounded-xl border min-w-48 p-8">
-
         <div className="text-3xl text-center mb-5">
-          <span className="text-teal-600 font-bold mr-1">SEC</span><span className="underline">Brain</span>
+          <span className="text-teal-600 font-bold mr-1">SEC</span>
+          <span className="underline">Brain</span>
         </div>
 
         <div className="mb-2">
@@ -54,7 +62,13 @@ export function Signin() {
         </div>
 
         <div className="text-center mt-3">
-          new user? <span onClick={() => navigate("/signup")} className="cursor-pointer underline text-purple-700">Sign up</span>
+          new user?{" "}
+          <span
+            onClick={() => navigate("/signup")}
+            className="cursor-pointer underline text-purple-700"
+          >
+            Sign up
+          </span>
         </div>
       </div>
     </div>

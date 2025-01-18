@@ -138,7 +138,7 @@ app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awa
 app.get("/api/v1/brain/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hash = req.params.shareLink;
     const link = yield db_1.LinkModel.findOne({
-        hash
+        hash,
     });
     console.log(link === null || link === void 0 ? void 0 : link.userId);
     if (!link) {
